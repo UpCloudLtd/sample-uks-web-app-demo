@@ -1,5 +1,13 @@
-This is sample project that demonstrates how to set up UpCloud Kubernetes Service cluster and deploying Kubernetes 
+# UpCloud Kubernetes Service demostration
+
+Please note that this is just an example on how you can use Terraform with [UpCloud](https://upcloud.com/) and should not be used in production as is. Please see [LICENSE](LICENSE) for details.
+
+
+This is a demo project that demonstrates how to set up UpCloud Kubernetes Service cluster and deploying Kubernetes 
 guestbook example application to created cluster using UpCloud Terraform provider.
+
+
+![Service Topology](demo.png)
 
 ### Getting started
 
