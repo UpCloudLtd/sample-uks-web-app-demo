@@ -78,8 +78,7 @@ For testing purposes, easy way to access Grafana is to use port-forwarding from 
 
 Then access via [http://localhost:3000](http://localhost:3000) and use the default grafana user:password of `admin:admin`.
 #### WordPress example
-First you need to create kubernetes secret for storing MySQL credentials. You can use `make print` or `terraform output`
-to see MySQL credential of DBaaS MySQL service terraform created.
+First you need to create kubernetes secret for storing MySQL credentials. 
 You can do this by running the following command.
 ```
 kubectl create secret generic mysql \
@@ -118,6 +117,10 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
   --set nfs.path=/data
 ```
 
+Then you can deploy WordPress that uses NFS server as persistent volume.
+```
+kubectl create  -f wordpress-example/wordpress-with-nfs.yaml
+```
 
 ### Destroying stuff
 
