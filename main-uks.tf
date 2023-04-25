@@ -23,8 +23,8 @@ resource "upcloud_kubernetes_cluster" "web-application" {
 resource "upcloud_kubernetes_node_group" "group" {
   name       = "web-apps"
   cluster    = upcloud_kubernetes_cluster.web-application.id
-  node_count = 2
-  plan       = "2xCPU-4GB"
+  node_count = var.worker_count
+  plan       = var.worker_plan
   anti_affinity = true
   labels = {
     managedBy = "terraform"

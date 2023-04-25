@@ -42,11 +42,7 @@ echo '/data         ${var.uks_network}(rw,sync,no_subtree_check,no_root_squash)'
 chown -R nobody:nogroup /data
 exportfs -ar
 EOT
-  provisioner "local-exec" {
-    command = "bash install-nfs-client-to-workers.sh"
-  }
 }
-
 output "nfs-server-ip" {
   value = upcloud_server.nas.network_interface[2].ip_address
 }

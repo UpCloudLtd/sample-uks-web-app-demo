@@ -10,8 +10,13 @@ variable "uks_network" {
   type = string
 }
 
-variable "redis_plan" {
+
+variable "worker_plan" {
   type = string
+}
+
+variable "worker_count" {
+  type = number
 }
 
 variable "mysql_plan" {
