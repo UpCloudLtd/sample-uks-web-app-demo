@@ -117,8 +117,8 @@ prometheus-operated     ClusterIP   None             <none>        9090/TCP     
 prometheus-operator     ClusterIP   None             <none>        8443/TCP                     47m
 ```
 #### WordPress example
-Nest application is [WordPress](https://github.com/WordPress/WordPress) and to start you need to 
-create kubernetes secret for storing MySQL credentials. These will be used by WordPress website we deploy.
+Next application is [WordPress](https://github.com/WordPress/WordPress) and to start you need to 
+create kubernetes secret for storing MySQL credentials. These will be used by WordPress we deploy.
 You can do this by running the following command as Terraform has already stored credentials in separate files.
 ```
 kubectl create secret generic mysql \
