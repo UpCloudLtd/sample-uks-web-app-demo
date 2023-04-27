@@ -39,7 +39,7 @@ spec:
         app: wordpress-nfs
     spec:
       containers:
-      - image: wordpress:latest
+      - image: wordpress:6.2
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
