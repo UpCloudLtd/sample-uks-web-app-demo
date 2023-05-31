@@ -22,3 +22,8 @@ variable "worker_count" {
 variable "mysql_plan" {
   type = string
 }
+
+variable "create_nas" {
+  type = bool
+  default = false
+}
