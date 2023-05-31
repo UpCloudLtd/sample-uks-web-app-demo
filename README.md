@@ -91,13 +91,13 @@ kubectl create secret generic mysql \
 Then create a persistent volume with the UpCloud CSI driver:
 
 ```
-kubectl create  -f manifests/wordpress/upcloud-csi-volume.yaml
+kubectl create -f manifests/wordpress/upcloud-csi-volume.yaml
 ```
 
 Next, deploy Wordpress and use the volume we just created:
 
 ```
-kubectl create  -f manifests/wordpress/wordpress-deployment.yaml
+kubectl create -f manifests/wordpress/wordpress-deployment.yaml
 ```
 
 The system then prepares you a load balancer, through which Wordpress is exposed.

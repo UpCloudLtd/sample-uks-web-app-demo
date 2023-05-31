@@ -24,6 +24,6 @@ variable "mysql_plan" {
 }
 
 variable "create_nas" {
-  type = bool
+  type    = bool
   default = false
 }
