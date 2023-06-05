@@ -1,14 +1,60 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-nfs
+  annotations:
+    service.beta.kubernetes.io/upcloud-load-balancer-config: |
+      {
+        "name": "my-wordpress-lb",
+        "frontends": [
+          {
+            "name": "https",
+            "mode": "http",
+            "port": 443,
+            "rules": [
+              {
+                "name": "add-ip-header",
+                "priority": 100,
+                "matchers": [],
+                "actions": [
+                  {
+                    "type": "set_forwarded_headers",
+                    "action_set_forwarded_headers": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "http",
+            "mode": "http",
+            "port": 80,
+            "rules": [
+              {
+                "name": "redirect-to-https",
+                "priority": 100,
+                "matchers": [],
+                "actions": [
+                  {
+                    "type": "http_redirect",
+                    "action_http_redirect": {
+                      "scheme": "https"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+  name: wordpress
   labels:
-    app: wordpress-nfs
+    app: wordpress
 spec:
   ports:
-    - port: 80
+    - port: 443
+      targetPort: 80
   selector:
-    app: wordpress-nfs
+    app: wordpress
   type: LoadBalancer
 ---
 apiVersion: v1

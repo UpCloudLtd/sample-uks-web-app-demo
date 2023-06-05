@@ -1,5 +1,7 @@
 ### WordPress with NFS
 
+In this example we will setup and use a shared NFS storage and use it to persist the Wordpress data.
+
 First, you might want to delete the previous WordPress deployment as this one uses the same MySQL database. You can do this with
 
 ```
@@ -7,11 +9,21 @@ kubectl delete -f manifests/wordpress/wordpress-deployment.yaml
 kubectl delete -f manifests/wordpress/upcloud-csi-volume.yaml
 ```
 
-To get started with NFS you need to deploy nfs-provisioner. You can do that with the commands below, but you need to fill
-in the <nfs-server-ip> from Terraform. You can use command `make print` to output the NFS server IP.
+To get started with NFS you need to deploy nfs-provisioner. You can do that with the commands below, but you need to first
+create a NFS server with Terraform. You can do it so by adding the following line to `terraform/config.tfvars`:
+
 
 ```
-helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+create_nas = true
+```
+
+And then `make apply`.
+
+Then proceed by configuring the NFS provisioner on Kubernetes. For this you will need the NFS server IP. Run `make output` and
+get `<nfs-server-ip>` for the following commands:
+
+```
+helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
 helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
   --create-namespace \
   --namespace nfs-provisioner \

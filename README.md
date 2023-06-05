@@ -16,6 +16,7 @@ Before testing this project you should have the following tools installed on you
 
 - Terraform
 - kubectl
+- Helm
 
 To create the resources with Terraform, you'll need your API credentials exported.
 
