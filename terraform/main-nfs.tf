@@ -45,5 +45,5 @@ exportfs -ar
 EOT
 }
 output "nfs-server-ip" {
-  value = var.create_nas ? upcloud_server.nas[0].network_interface[0].ip_address : ""
+  value = var.create_nas ? upcloud_server.nas[0].network_interface[2].ip_address : ""
 }
