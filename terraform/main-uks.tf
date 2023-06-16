@@ -21,17 +21,17 @@ resource "upcloud_kubernetes_cluster" "web-application" {
 }
 
 resource "upcloud_kubernetes_node_group" "group" {
-  name       = "web-apps"
-  cluster    = upcloud_kubernetes_cluster.web-application.id
-  node_count = var.worker_count
-  plan       = var.worker_plan
+  name          = "web-apps"
+  cluster       = upcloud_kubernetes_cluster.web-application.id
+  node_count    = var.worker_count
+  plan          = var.worker_plan
   anti_affinity = true
   labels = {
     managedBy = "terraform"
   }
   // Each node in this group will have this key added to authorized keys (for "debian" user)
   ssh_keys = [
-      var.ssh_key_public,
+    var.ssh_key_public,
   ]
 }
 
@@ -43,6 +43,6 @@ data "upcloud_kubernetes_cluster" "web-application" {
 # With `hashicorp/local` Terraform provider one can output the kubeconfig to a file. The file can be easily
 # used to configure `kubectl` or any other Kubernetes client.
 resource "local_file" "kubeconfig" {
-  content = data.upcloud_kubernetes_cluster.web-application.kubeconfig
+  content  = data.upcloud_kubernetes_cluster.web-application.kubeconfig
   filename = "${path.module}/kubeconfig.yml"
 }

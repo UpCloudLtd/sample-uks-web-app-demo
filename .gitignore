@@ -1,6 +1,7 @@
-kubeconfig.yaml
+kubeconfig.yml
 terraform.tfstate
 terraform.tfstate.backup
 .terraform
 .terraform.lock.hcl
 kube-prometheus
+*.tfvars

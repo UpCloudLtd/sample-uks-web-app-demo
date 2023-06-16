@@ -1,5 +1,6 @@
 
 resource "upcloud_server" "nas" {
+  count      = var.create_nas ? 1 : 0
   hostname   = "nfs-server"
   zone       = var.zone
   plan       = "4xCPU-8GB"
@@ -44,5 +45,5 @@ exportfs -ar
 EOT
 }
 output "nfs-server-ip" {
-  value = upcloud_server.nas.network_interface[2].ip_address
+  value = var.create_nas ? upcloud_server.nas[0].network_interface[2].ip_address : ""
 }
